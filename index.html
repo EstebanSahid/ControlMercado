@@ -60,20 +60,35 @@
 
         <!-- Contenido -->
         <div id="productos_authorize" class="container">
-            <h4>PRODUCTOS</h4>
-            <input type="text" id="searchInput" placeholder="Buscar Producto" oninput="searchProducts()">
-            <table id="productTable" class="styled-table">
-                <thead>
-                    <tr>
-                        <th>CÓDIGO</th>
-                        <th>PRODUCTO</th>
-                        <th>AÑADIR</th>
-                    </tr>
-                </thead>
-                <tbody id="content"></tbody>
-            </table>
+            <div class="row">
+                <div class="col">
+                    <h4>PRODUCTOS</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input class="form-control" type="text" id="searchInput" placeholder="Buscar Producto" oninput="searchProducts()">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table id="productTable" class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>CÓDIGO</th>
+                                <th>PRODUCTO</th>
+                                <!--<th>AÑADIR</th>-->
+                            </tr>
+                        </thead>
+                        <tbody id="content"></tbody>
+                    </table>
+
+                    <label id="warning_lbl">Utiliza el buscador para filtrar los productos</label>
+                    <!--<label id="empty_lbl">No se encontraron productos</label>-->
+                </div>
+                <div class="col"></div>
+            </div>
         </div>
-        
         
     </div>
 
