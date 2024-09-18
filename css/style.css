@@ -1,0 +1,144 @@
+/* header */
+
+.hero_area {
+  content: "";
+  position: absolute;
+  /*width: 100%;
+  height: 102%;*/
+  left: 0;
+  top: 0;
+  background-color: #c4d70f;
+  background: linear-gradient(to bottom, #c4d70f 30%, #ffffe6 100%);
+  height: 100%;
+  width: 100%; /* Ocupa el 100% del ancho de la viewport */
+}
+
+
+.header_section .container-fluid {
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.header_section .nav_container {
+  margin: 0 auto;
+}
+
+.custom_nav-container.navbar-expand-lg .navbar-nav .nav-link img {
+  width: 22px;
+  margin-right: 15px;
+}
+
+.custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
+  padding: 0px 25px;
+  color: #fefeff;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+
+.custom_menu-btn {
+  z-index: 9;
+  position: absolute;
+  right: 15px;
+  top: 14px;
+}
+
+.custom_menu-btn button {
+  margin-top: 12px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+
+}
+
+.custom_menu-btn button span {
+  display: block;
+  width: 35px;
+  height: 5px;
+  background-color: #fff;
+  margin: 7px 0;
+  transition: all .3s;
+}
+
+.menu_btn-style {
+  position: fixed;
+  right: 29px;
+  top: 14px;
+}
+
+.custom_menu-btn .s-2 {
+  transition: all .1s;
+}
+
+.menu_btn-style button .s-1 {
+  transform: rotate(45deg) translateY(17px);
+}
+
+.menu_btn-style button .s-2 {
+  transform: translateX(100px);
+}
+
+.menu_btn-style button .s-3 {
+  transform: rotate(-45deg)translateY(-17px);
+}
+
+.menu_width {
+  width: 100%;
+}
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: initial;
+}
+
+.btn,
+.btn:focus {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.custom_nav-container .nav_search-btn {
+  background-image: url(../images/search-icon.png);
+  background-size: 18px;
+  background-repeat: no-repeat;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  border: none;
+  margin: 0 40px 0 15px;
+  background-position: center;
+
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand img {
+  width: 40px;
+  margin-right: 5px;
+}
+
+.navbar-brand span {
+  font-family: 'Dosis', sans-serif;
+  text-transform: uppercase;
+  font-size: 28px;
+  font-weight: 500;
+  color: #fefeff;
+  margin-top: 5px;
+}
+
+.container h4 {
+  font-family: 'Dosis', sans-serif;
+  text-transform: uppercase;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+/* Fin header */

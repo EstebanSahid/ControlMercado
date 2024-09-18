@@ -6,7 +6,7 @@ const API_KEY = "AIzaSyASHdxYBYKv12hIQonTh9v0mUGzvACjYss";
 const DISCOVERY_DOC = "https://sheets.googleapis.com/$discovery/rest?version=v4";
 
 // Permisos de la Aplicación con respecto a la cuenta
-const SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
+const SCOPES = "https://www.googleapis.com/auth/spreadsheets";
 
 let tokenClient;
 let gapiInited = false;
@@ -16,18 +16,17 @@ document.getElementById("gapi").addEventListener("load", gapiLoaded);
 document.getElementById("gis").addEventListener("load", gisLoaded);
 
 document.getElementById("authorize_button").style.visibility = "hidden";
+document.getElementById("productos_authorize").style.visibility = "hidden";
 document.getElementById("signout_button").style.visibility = "hidden";
 
-/*
-    Callback after api.js is loaded.
-*/
+/* Callback after api.js is loaded. */
 function gapiLoaded() {
     gapi.load("client", initializeGapiClient);
 }
 
 /*
-    Callback after the API client is loaded. Loads the
-    discovery doc to initialize the API.
+Callback after the API client is loaded. Loads the
+discovery doc to initialize the API.
 */
 async function initializeGapiClient() {
     await gapi.client.init({
@@ -39,7 +38,7 @@ async function initializeGapiClient() {
 }
 
 /*
-    Callback after Google Identity Services are loaded.
+Callback after Google Identity Services are loaded.
 */
 function gisLoaded() {
     tokenClient = google.accounts.oauth2.initTokenClient({
@@ -51,9 +50,7 @@ function gisLoaded() {
     maybeEnableButtons();
 }
 
-/*
-    Enables user interaction after all libraries are loaded.
-*/
+/* Enables user interaction after all libraries are loaded. */
 function maybeEnableButtons() {
     if (gapiInited && gisInited) {
         document.getElementById("authorize_button").style.visibility = "visible";
@@ -69,7 +66,12 @@ function handleAuthClick() {
             throw resp;
         }
         document.getElementById("signout_button").style.visibility = "visible";
-        document.getElementById("authorize_button").innerText = "Refresh";
+        document.getElementById("authorize_button").style.visibility = "hidden";
+        document.getElementById("productos_authorize").style.visibility = "visible";
+
+        /* Guardamos el Token en el LocalStorage */
+        //localStorage.setItem('authToken', JSON.stringify(gapi.client.getToken()));
+
         await getProducts();
     };
 
@@ -91,9 +93,9 @@ function handleSignoutClick() {
     if (token !== null) {
         google.accounts.oauth2.revoke(token.access_token);
         gapi.client.setToken("");
-        document.getElementById("content").innerText = "";
-        document.getElementById("authorize_button").innerText = "Authorize";
+        document.getElementById("authorize_button").style.visibility = "visible";
         document.getElementById("signout_button").style.visibility = "hidden";
+        document.getElementById("productos_authorize").style.visibility = "hidden";
     }
 }
 
