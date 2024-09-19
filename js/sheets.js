@@ -1,8 +1,15 @@
-/* Listar y Buscador */
-// Variables
-let productsData = [];
+/* Inicio Variables */
 
-document.getElementById("warning_lbl").style.visibility = "Hidden";
+let productsData = [];
+let selectedProducts = [];
+
+/* Fin Variables  */
+
+/* */
+
+/* Listar y Buscador */
+
+//document.getElementById("warning_lbl").style.visibility = "Hidden";
 
 async function getProducts() {
     let response;
@@ -25,8 +32,6 @@ async function getProducts() {
 
     // Almacenamos los productos y los mostramos inicialmente
     productsData = range.values;
-    console.log("Products Data");
-    console.log(productsData);
     displayProducts(productsData);
 }
 
@@ -34,15 +39,17 @@ function displayProducts(data) {
     const tbody = document.getElementById("content");
     tbody.innerHTML = '';
 
-    console.log("Datos N");
-    console.log(data.length);
-
     if (data.length > 15) {
+        // Mostrar una info para que busque los productos si la lista es larga
         document.getElementById("warning_lbl").innerText = "Utiliza el buscador para filtrar los productos";
         document.getElementById("warning_lbl").style.visibility = "visible";
+
     } else if (data.length == 0) {
+        // Mostrar un mensaje si no se encontraron productos
         document.getElementById("warning_lbl").innerText = "No se encontraron productos";
+
     } else {
+        // Mostrar los productos creando una tabla según los datos
         document.getElementById("warning_lbl").style.visibility = "Hidden";
         data.forEach((row) => {
             const tr = document.createElement("tr");
@@ -51,6 +58,13 @@ function displayProducts(data) {
                 td.textContent = cell;
                 tr.appendChild(td);
             });
+
+            // Capturar el Click para guardar en el arreglo
+            tr.addEventListener("click", () => {
+                selectedProducts.push(row);
+                captureProducts(selectedProducts);
+            })
+
             tbody.appendChild(tr);
         });
     }
@@ -59,15 +73,67 @@ function displayProducts(data) {
 
 function searchProducts() {
     const input = document.getElementById("searchInput").value.toLowerCase();
-    console.log("input ", input)
+
     // Filtrar productos por PLUS o nombre de producto
     const filteredData = productsData.filter((row) => {
-        console.log(row);
         const plus = row[0].toLowerCase();
         const producto = row[1].toLowerCase();
-        console.log(plus, " ", producto)
         return plus.includes(input) || producto.includes(input);
     });
 
-    displayProducts(filteredData);
+    //Filtrar que no Estén presentes en Pedidos
+    const NoOrderFilteredData = filteredData.filter((row) => {
+        // row[0] es el campo que representa el identificador del producto
+        return !selectedProducts.some(
+            selectedProduct => selectedProduct[0].toLowerCase() === row[0].toLowerCase());
+    });
+
+    /*
+    console.log("Datos a mostrar");
+    console.log(NoOrderFilteredData);
+
+    console.log("Datos googleSheets");
+    console.log(filteredData);
+
+    console.log("Datos a pedir");
+    console.log(selectedProducts);
+    */ 
+
+    displayProducts(NoOrderFilteredData);
 }
+
+/* Fin Listar y Buscador */
+
+/* */
+
+/* Inicio Table Pedidos */
+
+function captureProducts(data) {
+    const tbody = document.getElementById("content_order");
+    tbody.innerHTML = '';
+
+    data.forEach((row) => {
+        const tr = document.createElement("tr");
+
+        // Crear celdas de datos
+        row.forEach((cell) => {
+            const td = document.createElement("td");
+            td.textContent = cell;
+            tr.appendChild(td);
+        });
+
+        // Crear los input
+        const inputTd = document.createElement("td");
+        const input = document.createElement("input");
+        input.type = "text";
+        input.placeholder = "Cantidad"
+        inputTd.appendChild(input);
+        tr.appendChild(inputTd);
+
+        tbody.appendChild(tr);
+    });
+
+    searchProducts();
+}
+
+/* Fin Table Pedidos */

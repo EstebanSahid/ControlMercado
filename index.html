@@ -51,47 +51,81 @@
             </div>
         </header>
 
-        <!-- Pruebas -->
-        <!--
+        <!-- Contenido -->
+        <div id="productos_authorize" class="container">
+            <!-- Buscar Productos para Tienda -->
+            
+            <div class="row">
+                <div class="col offset-6">
+                    <input class="form-control" type="text" id="searchInput" placeholder="Buscar Producto" oninput="searchProducts()">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <h5>PRODUCTOS</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Lista de Productos -->
+                        <div class="col">
+                            <table id="productTable" class="styled-table">
+                                <thead>
+                                    <tr>
+                                        <th>CÓDIGO</th>
+                                        <th>PRODUCTO</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="content"></tbody>
+                            </table>
+        
+                            <label id="warning_lbl">Cargando Productos</label>
+        
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <h5>PEDIDOS</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Lista de Pedidos -->
+                        <div class="col">
+                            <table id="productTable" class="styled-table">
+                                <thead>
+                                    <tr>
+                                        <th>CÓDIGO</th>
+                                        <th>PRODUCTO</th>
+                                        <th>CANTIDAD</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="content_order"></tbody>
+                            </table>
+        
+                            <label id="pedidos_lbl">Aqui aparecerán Los productos agregados</label>
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pruebas 
         Autenticación 
         <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
         <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
         -->
 
-        <!-- Contenido -->
-        <div id="productos_authorize" class="container">
-            <div class="row">
-                <div class="col">
-                    <h4>PRODUCTOS</h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <input class="form-control" type="text" id="searchInput" placeholder="Buscar Producto" oninput="searchProducts()">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <table id="productTable" class="styled-table">
-                        <thead>
-                            <tr>
-                                <th>CÓDIGO</th>
-                                <th>PRODUCTO</th>
-                                <!--<th>AÑADIR</th>-->
-                            </tr>
-                        </thead>
-                        <tbody id="content"></tbody>
-                    </table>
-
-                    <label id="warning_lbl">Utiliza el buscador para filtrar los productos</label>
-                    <!--<label id="empty_lbl">No se encontraron productos</label>-->
-                </div>
-                <div class="col"></div>
-            </div>
-        </div>
         
     </div>
 
+    
     <script async defer src="https://apis.google.com/js/api.js" id="gapi"></script>
     <script async defer src="https://accounts.google.com/gsi/client" id="gis"></script>
     <script async defer src="./js/auth.js"></script>
